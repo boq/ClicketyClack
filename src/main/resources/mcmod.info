@@ -1,0 +1,17 @@
+[
+{
+  "modid" : "clicketyclack",
+  "name" : "ClicketyClack",
+  "version" : "${version}",
+  "credits" : "",
+  "url" : "http://www.openmods.info",
+  "authors": [
+    "boq"
+  ],
+  "description": "Small screen helper for tutorials",
+  "logoFile" : "",
+  "updateUrl" : "",
+  "parent" : "",
+  "screenshots": [
+  ]
+}]
