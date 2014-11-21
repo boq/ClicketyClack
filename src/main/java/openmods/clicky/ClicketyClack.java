@@ -21,7 +21,7 @@ public class ClicketyClack {
         @Override
         public void preInit() {
             final OverlayRenderHandler handler = new OverlayRenderHandler();
-            MinecraftForge.EVENT_BUS.register(handler.createForgeListener());
+            MinecraftForge.EVENT_BUS.register(handler.getStitchListener());
             FMLCommonHandler.instance().bus().register(handler.createFmlListener());
         }
     }
