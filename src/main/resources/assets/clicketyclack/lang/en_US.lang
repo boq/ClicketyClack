@@ -1,0 +1,8 @@
+openmods.clicky.mouse=Mouse state indicator
+openmods.clicky.keyboard=Keyboard state indicator
+
+openmods.clicky.visible=Indicator visible
+openmods.clicky.x=X
+openmods.clicky.y=Y
+openmods.clicky.size=Size
+openmods.clicky.fadeTime=Fade time

@@ -1,6 +1,7 @@
 package openmods.clicky;
 
 import openmods.clicky.GuiInputEvent.GuiMouseInputEvent;
+import openmods.clicky.config.ConfigValues;
 
 import org.lwjgl.opengl.GL11;
 
@@ -16,8 +17,12 @@ public class OverlayRenderHandler {
 
     private MouseIndicators mouseIndicators;
 
-    public OverlayRenderHandler() {
-        mouseIndicators = new MouseIndicators(icons, 16, 16, 16, 20);
+    public OverlayRenderHandler(ConfigValues config) {
+        init(config);
+    }
+
+    public void init(ConfigValues values) {
+        mouseIndicators = new MouseIndicators(icons, values.mouse.x, values.mouse.y, values.mouse.size, values.mouse.fadeTime);
     }
 
     public class FmlListener {
