@@ -6,6 +6,6 @@ public class GuiInputEvent extends Event {
 
     public static class GuiMouseInputEvent extends GuiInputEvent {}
 
-    public static class GuiKeyboardInputEvent extends GuiInputEvent {}
+    public static class GuiKeyInputEvent extends GuiInputEvent {}
 
 }

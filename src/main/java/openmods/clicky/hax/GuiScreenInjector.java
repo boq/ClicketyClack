@@ -1,7 +1,7 @@
 package openmods.clicky.hax;
 
 import jdk.internal.org.objectweb.asm.Opcodes;
-import openmods.clicky.GuiInputEvent.GuiKeyboardInputEvent;
+import openmods.clicky.GuiInputEvent.GuiKeyInputEvent;
 import openmods.clicky.GuiInputEvent.GuiMouseInputEvent;
 
 import org.objectweb.asm.ClassVisitor;
@@ -32,7 +32,7 @@ public class GuiScreenInjector extends ClassVisitor {
     private static final String VOID_DESC = "()V";
 
     public static void signalKeyboardEvent() {
-        FMLCommonHandler.instance().bus().post(new GuiKeyboardInputEvent());
+        FMLCommonHandler.instance().bus().post(new GuiKeyInputEvent());
     }
 
     public static void signalMouseEvent() {

@@ -17,7 +17,7 @@ public class IconContainer {
         private final String iconName;
         private IIcon icon;
 
-        public IconHolder(String iconName) {
+        private IconHolder(String iconName) {
             this.iconName = iconName;
         }
 

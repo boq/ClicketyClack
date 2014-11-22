@@ -11,24 +11,22 @@ import com.google.common.collect.ImmutableList;
 
 public class MouseIndicators {
     private static final int WHEEL_THRESHOLD = 5;
-    private final int x;
-    private final int y;
+    private final IndicatorPosition position;
     private final int scale;
 
     private final StaticIcon background;
 
     private final List<EventIcon> indicators;
 
-    public MouseIndicators(IconContainer icons, int x, int y, int scale, int decayTime) {
-        this.x = x;
-        this.y = y;
+    public MouseIndicators(IconContainer icons, IndicatorPosition position, int scale, int decayTime) {
+        this.position = position;
         this.scale = scale;
 
         ImmutableList.Builder<EventIcon> indicators = ImmutableList.builder();
 
         background = new StaticIcon(icons.getHolder("clicketyclack:mouse_background"));
 
-        indicators.add(new DecayingInputIcon(icons.getHolder("clicketyclack:mouse_up"), decayTime) {
+        indicators.add(new MouseCustomEvent(icons.getHolder("clicketyclack:mouse_up"), decayTime) {
             @Override
             public void handleInput() {
                 if (Mouse.getEventDWheel() > WHEEL_THRESHOLD) {
@@ -38,7 +36,7 @@ public class MouseIndicators {
             }
         });
 
-        indicators.add(new DecayingInputIcon(icons.getHolder("clicketyclack:mouse_down"), decayTime) {
+        indicators.add(new MouseCustomEvent(icons.getHolder("clicketyclack:mouse_down"), decayTime) {
             @Override
             public void handleInput() {
                 if (Mouse.getEventDWheel() < -WHEEL_THRESHOLD) {
@@ -66,9 +64,11 @@ public class MouseIndicators {
     }
 
     public void render(float partialTick) {
-        Utils.bindDefaultItemsTexture();
+        RenderUtils.bindDefaultItemsTexture();
+        position.update();
+
         GL11.glPushMatrix();
-        GL11.glTranslated(x, y, 0);
+        GL11.glTranslated(position.x(), position.y(), 0);
         GL11.glScaled(scale, scale, 1);
 
         background.render(partialTick);

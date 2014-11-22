@@ -4,7 +4,7 @@ import openmods.clicky.IconContainer.IconHolder;
 
 import org.lwjgl.input.Mouse;
 
-public class MouseButtonEvent extends DecayingIcon implements EventIcon {
+public class MouseButtonEvent extends SingleDecayingIcon implements EventIcon {
 
     private final int button;
 

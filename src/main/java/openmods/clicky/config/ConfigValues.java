@@ -12,9 +12,9 @@ public class ConfigValues {
 
     public ConfigValues(Configuration config) {
         config.getCategory(CATEGORY_MOUSE).setLanguageKey("openmods.clicky.mouse");
-        this.mouse = new IndicatorConfig(config, CATEGORY_MOUSE);
+        this.mouse = new IndicatorConfig(config, CATEGORY_MOUSE, 4, 4, 16);
 
         config.getCategory(CATEGORY_KEYBOARD).setLanguageKey("openmods.clicky.keyboard");
-        this.keyboard = new IndicatorConfig(config, CATEGORY_KEYBOARD);
+        this.keyboard = new IndicatorConfig(config, CATEGORY_KEYBOARD, 32, 8, 16);
     }
 }

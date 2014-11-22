@@ -1,11 +1,15 @@
 package openmods.clicky;
 
+import net.minecraft.client.Minecraft;
+import openmods.clicky.GuiInputEvent.GuiKeyInputEvent;
 import openmods.clicky.GuiInputEvent.GuiMouseInputEvent;
 import openmods.clicky.config.ConfigValues;
+import openmods.clicky.config.IndicatorConfig;
 
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.MouseInputEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
@@ -17,12 +21,20 @@ public class OverlayRenderHandler {
 
     private MouseIndicators mouseIndicators;
 
+    private KeyboardIndicators keyboardIndicators;
+
     public OverlayRenderHandler(ConfigValues config) {
         init(config);
     }
 
+    private static IndicatorPosition createPosition(Minecraft minecraft, IndicatorConfig config) {
+        return new IndicatorPosition(minecraft, config.dx, config.dy, config.vertical, config.horizontal);
+    }
+
     public void init(ConfigValues values) {
-        mouseIndicators = new MouseIndicators(icons, values.mouse.x, values.mouse.y, values.mouse.size, values.mouse.fadeTime);
+        Minecraft mc = Minecraft.getMinecraft();
+        mouseIndicators = values.mouse.visible ? new MouseIndicators(icons, createPosition(mc, values.mouse), values.mouse.size, values.mouse.fadeTime) : null;
+        keyboardIndicators = values.keyboard.visible ? new KeyboardIndicators(icons, createPosition(mc, values.keyboard), values.keyboard.size, values.keyboard.fadeTime) : null;
     }
 
     public class FmlListener {
@@ -39,9 +51,24 @@ public class OverlayRenderHandler {
         }
 
         @SubscribeEvent
+        public void keyEvent(KeyInputEvent evt) {
+            if (keyboardIndicators != null)
+                keyboardIndicators.keyEvent();
+        }
+
+        @SubscribeEvent
+        public void keyEvent(GuiKeyInputEvent evt) {
+            if (keyboardIndicators != null)
+                keyboardIndicators.keyEvent();
+        }
+
+        @SubscribeEvent
         public void onTick(ClientTickEvent evt) {
             if (mouseIndicators != null)
                 mouseIndicators.tick();
+
+            if (keyboardIndicators != null)
+                keyboardIndicators.tick();
         }
 
         @SubscribeEvent
@@ -54,6 +81,9 @@ public class OverlayRenderHandler {
                 GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 if (mouseIndicators != null)
                     mouseIndicators.render(evt.renderTickTime);
+
+                if (keyboardIndicators != null)
+                    keyboardIndicators.render(evt.renderTickTime);
                 GL11.glDisable(GL11.GL_BLEND);
             }
         }

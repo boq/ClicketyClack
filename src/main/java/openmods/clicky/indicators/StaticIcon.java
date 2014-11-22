@@ -1,21 +1,24 @@
 package openmods.clicky.indicators;
 
+import net.minecraft.util.IIcon;
 import openmods.clicky.IconContainer.IconHolder;
+import openmods.clicky.RenderUtils;
 
-public class StaticIcon extends RenderableIcon {
+public class StaticIcon implements Renderable {
+
+    private final IconHolder icon;
 
     public StaticIcon(IconHolder icon) {
-        super(icon);
+        this.icon = icon;
     }
 
     @Override
-    protected boolean shouldRender() {
-        return true;
-    }
+    public void render(float partialTick) {
+        final IIcon icon = this.icon.get();
+        if (icon == null)
+            return;
 
-    @Override
-    protected float alpha(float partialTick) {
-        return 1;
+        RenderUtils.renderIcon(icon, 1);
     }
 
 }
