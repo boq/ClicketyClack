@@ -29,6 +29,8 @@ public class KeyboardIndicators {
     private final Map<Integer, KeyIcon> activeIcons = Maps.newHashMap();
     private final List<KeyIcon> icons = Lists.newLinkedList();
 
+    private boolean visible = true;
+
     private static final Map<Integer, String> CUSTOM_NAMES;
     private static final Map<Integer, Integer> EXTRA_SIZE;
 
@@ -176,7 +178,15 @@ public class KeyboardIndicators {
             if (icon != null)
                 icon.startDecay();
         }
+    }
 
+    public void toggle() {
+        visible = !visible;
+
+        if (!visible) {
+            activeIcons.clear();
+            icons.clear();
+        }
     }
 
     public void tick() {
@@ -192,6 +202,10 @@ public class KeyboardIndicators {
     }
 
     public void render(float renderTick) {
+        if (!visible)
+            return;
+
+        RenderUtils.bindDefaultItemsTexture();
         position.update();
 
         GL11.glPushMatrix();

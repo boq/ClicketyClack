@@ -18,6 +18,8 @@ public class MouseIndicators {
 
     private final List<EventIcon> indicators;
 
+    private boolean visible = true;
+
     public MouseIndicators(IconContainer icons, IndicatorPosition position, int scale, int decayTime) {
         this.position = position;
         this.scale = scale;
@@ -53,6 +55,10 @@ public class MouseIndicators {
         this.indicators = indicators.build();
     }
 
+    public void toggle() {
+        visible = !visible;
+    }
+
     public void tick() {
         for (Ticker ticker : indicators)
             ticker.tick();
@@ -64,6 +70,9 @@ public class MouseIndicators {
     }
 
     public void render(float partialTick) {
+        if (!visible)
+            return;
+
         RenderUtils.bindDefaultItemsTexture();
         position.update();
 

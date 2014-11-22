@@ -97,4 +97,14 @@ public class OverlayRenderHandler {
         return icons;
     }
 
+    public void toggleMouse() {
+        if (mouseIndicators != null)
+            mouseIndicators.toggle();
+    }
+
+    public void toggleKeyboard() {
+        if (keyboardIndicators != null)
+            keyboardIndicators.toggle();
+    }
+
 }

@@ -1,3 +1,7 @@
+openmods.clicky.binding=ClicketyClack
+openmods.clicky.toggle_mouse=Toggle mouse indicator
+openmods.clicky.toggle_keyboard=Toggle keyboard indicator
+
 openmods.clicky.mouse=Mouse state indicator
 openmods.clicky.keyboard=Keyboard state indicator
 

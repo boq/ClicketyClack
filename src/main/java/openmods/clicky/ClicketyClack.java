@@ -5,6 +5,7 @@ import java.io.File;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import openmods.clicky.config.ConfigValues;
+import openmods.clicky.config.KeyBindingHandler;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -57,6 +58,8 @@ public class ClicketyClack {
             MinecraftForge.EVENT_BUS.register(handler.getStitchListener());
             FMLCommonHandler.instance().bus().register(handler.createFmlListener());
             FMLCommonHandler.instance().bus().register(new ConfigListener());
+
+            FMLCommonHandler.instance().bus().register(new KeyBindingHandler(handler));
         }
     }
 

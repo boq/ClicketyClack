@@ -7,6 +7,8 @@ public class ConfigValues {
     public static final String CATEGORY_KEYBOARD = "keyboard";
     public static final String CATEGORY_MOUSE = "mouse";
 
+    public static final String CONFIG_ENABLED = "enabled";
+
     public final IndicatorConfig mouse;
     public final IndicatorConfig keyboard;
 
