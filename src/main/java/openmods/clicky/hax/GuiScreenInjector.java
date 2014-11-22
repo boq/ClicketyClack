@@ -1,12 +1,9 @@
 package openmods.clicky.hax;
 
-import jdk.internal.org.objectweb.asm.Opcodes;
 import openmods.clicky.GuiInputEvent.GuiKeyInputEvent;
 import openmods.clicky.GuiInputEvent.GuiMouseInputEvent;
 
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Type;
+import org.objectweb.asm.*;
 import org.objectweb.asm.commons.Method;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -52,9 +49,9 @@ public class GuiScreenInjector extends ClassVisitor {
     public GuiScreenInjector(ClassVisitor parent, String rawCls) {
         super(Opcodes.ASM5, parent);
 
-        handleMouseMatcher = new MethodMatcher(rawCls, VOID_DESC, "handleMouseInput", "func_73867_d");
+        handleMouseMatcher = new MethodMatcher(rawCls, VOID_DESC, "handleMouseInput", "func_146274_d");
 
-        handleKeyboardMatcher = new MethodMatcher(rawCls, VOID_DESC, "handleKeyboardInput", "func_73860_n");
+        handleKeyboardMatcher = new MethodMatcher(rawCls, VOID_DESC, "handleKeyboardInput", "func_146282_l");
     }
 
     @Override

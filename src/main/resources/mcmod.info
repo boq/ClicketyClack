@@ -5,10 +5,10 @@
   "version" : "${version}",
   "credits" : "",
   "url" : "http://www.openmods.info",
-  "authors": [
+  "authorList": [
     "boq"
   ],
-  "description": "Small screen helper for tutorials",
+  "description": "Mouse and keyboard on-screen indicators",
   "logoFile" : "",
   "updateUrl" : "",
   "parent" : "",
