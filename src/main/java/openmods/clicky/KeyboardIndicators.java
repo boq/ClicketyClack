@@ -31,6 +31,8 @@ public class KeyboardIndicators {
 
     private boolean visible = true;
 
+    private int unstuckCounter;
+
     private static final Map<Integer, String> CUSTOM_NAMES;
     private static final Map<Integer, Integer> EXTRA_SIZE;
 
@@ -111,7 +113,7 @@ public class KeyboardIndicators {
     static {
         ImmutableMap.Builder<Integer, Integer> builder = ImmutableMap.builder();
         builder.put(Keyboard.KEY_ESCAPE, 2);
-        builder.put(Keyboard.KEY_SCROLL, 4);
+        builder.put(Keyboard.KEY_SCROLL, 5);
         builder.put(Keyboard.KEY_CAPITAL, 4);
         builder.put(Keyboard.KEY_NUMLOCK, 4);
         builder.put(Keyboard.KEY_PAUSE, 2);
@@ -192,12 +194,29 @@ public class KeyboardIndicators {
     public void tick() {
         Iterator<KeyIcon> icons = this.icons.iterator();
 
+        if (unstuckCounter-- < 0) {
+            unstuck();
+            unstuckCounter = 20;
+        }
+
         while (icons.hasNext()) {
             KeyIcon icon = icons.next();
             icon.tick();
 
             if (icon.hasDecayed())
                 icons.remove();
+        }
+    }
+
+    private void unstuck() {
+        // Key can get stuck when window is resized or full screen is activated
+        Iterator<Map.Entry<Integer, KeyIcon>> it = activeIcons.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Integer, KeyIcon> e = it.next();
+            if (!Keyboard.isKeyDown(e.getKey())) {
+                e.getValue().startDecay();
+                it.remove();
+            }
         }
     }
 
