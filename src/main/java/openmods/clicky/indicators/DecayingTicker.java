@@ -28,7 +28,7 @@ public class DecayingTicker implements Ticker {
     }
 
     public boolean hasDecayed() {
-        return counter <= 0;
+        return isDecaying && counter <= 0;
     }
 
     public float getProgress(float partialTick) {

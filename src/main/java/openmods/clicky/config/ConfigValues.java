@@ -9,14 +9,14 @@ public class ConfigValues {
 
     public static final String CONFIG_ENABLED = "enabled";
 
-    public final IndicatorConfig mouse;
-    public final IndicatorConfig keyboard;
+    public final MouseConfig mouse;
+    public final KeyboardConfig keyboard;
 
     public ConfigValues(Configuration config) {
         config.getCategory(CATEGORY_MOUSE).setLanguageKey("openmods.clicky.mouse");
-        this.mouse = new IndicatorConfig(config, CATEGORY_MOUSE, 4, 4, 16);
+        this.mouse = new MouseConfig(config, CATEGORY_MOUSE, 4, 4, 16);
 
         config.getCategory(CATEGORY_KEYBOARD).setLanguageKey("openmods.clicky.keyboard");
-        this.keyboard = new IndicatorConfig(config, CATEGORY_KEYBOARD, 32, 8, 16);
+        this.keyboard = new KeyboardConfig(config, CATEGORY_KEYBOARD, 32, 8, 16);
     }
 }

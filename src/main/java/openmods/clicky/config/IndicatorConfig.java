@@ -84,13 +84,15 @@ public class IndicatorConfig {
         {
             Property prop = config.get(category, "size", defaultSize, "Size of mouse state indicator");
             prop.setLanguageKey("openmods.clicky.size");
-            size = prop.getInt();
+            prop.setMinValue(1);
+            size = Math.max(1, prop.getInt());
         }
 
         {
             Property prop = config.get(category, "fadeTime", 10, "Event fade time (in ticks)");
-            prop.setLanguageKey("openmods.clicky.fadeTime");
-            fadeTime = prop.getInt();
+            prop.setLanguageKey("openmods.clicky.fade_time");
+            prop.setMinValue(0);
+            fadeTime = Math.max(0, prop.getInt());
         }
     }
 

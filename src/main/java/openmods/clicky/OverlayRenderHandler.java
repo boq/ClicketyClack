@@ -3,8 +3,7 @@ package openmods.clicky;
 import net.minecraft.client.Minecraft;
 import openmods.clicky.GuiInputEvent.GuiKeyInputEvent;
 import openmods.clicky.GuiInputEvent.GuiMouseInputEvent;
-import openmods.clicky.config.ConfigValues;
-import openmods.clicky.config.IndicatorConfig;
+import openmods.clicky.config.*;
 
 import org.lwjgl.opengl.GL11;
 
@@ -33,8 +32,12 @@ public class OverlayRenderHandler {
 
     public void init(ConfigValues values) {
         Minecraft mc = Minecraft.getMinecraft();
-        mouseIndicators = values.mouse.visible ? new MouseIndicators(icons, createPosition(mc, values.mouse), values.mouse.size, values.mouse.fadeTime) : null;
-        keyboardIndicators = values.keyboard.visible ? new KeyboardIndicators(icons, createPosition(mc, values.keyboard), values.keyboard.size, values.keyboard.fadeTime) : null;
+
+        final MouseConfig mouse = values.mouse;
+        mouseIndicators = mouse.visible ? new MouseIndicators(icons, createPosition(mc, mouse), mouse.size, mouse.fadeTime, mouse.wheelEventDuration, mouse.wheelThreshold) : null;
+
+        final KeyboardConfig keyboard = values.keyboard;
+        keyboardIndicators = keyboard.visible ? new KeyboardIndicators(icons, createPosition(mc, keyboard), keyboard.size, keyboard.fadeTime) : null;
     }
 
     public class FmlListener {

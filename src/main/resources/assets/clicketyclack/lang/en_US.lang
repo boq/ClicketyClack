@@ -11,4 +11,6 @@ openmods.clicky.dy=Delta Y
 openmods.clicky.horizontal=Horizontal anchor
 openmods.clicky.vertical=Vertical anchor
 openmods.clicky.size=Size
-openmods.clicky.fadeTime=Fade time
+openmods.clicky.fade_time=Fade time
+openmods.clicky.wheel_threshold=Wheel threshold
+openmods.clicky.wheel_event_duration=Wheel event duration

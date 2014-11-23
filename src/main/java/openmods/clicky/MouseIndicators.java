@@ -4,13 +4,11 @@ import java.util.List;
 
 import openmods.clicky.indicators.*;
 
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import com.google.common.collect.ImmutableList;
 
 public class MouseIndicators {
-    private static final int WHEEL_THRESHOLD = 5;
     private final IndicatorPosition position;
     private final int scale;
 
@@ -20,7 +18,7 @@ public class MouseIndicators {
 
     private boolean visible = true;
 
-    public MouseIndicators(IconContainer icons, IndicatorPosition position, int scale, int decayTime) {
+    public MouseIndicators(IconContainer icons, IndicatorPosition position, int scale, int decayTime, int wheelDuration, int wheelThreshold) {
         this.position = position;
         this.scale = scale;
 
@@ -28,23 +26,17 @@ public class MouseIndicators {
 
         background = new StaticIcon(icons.getHolder("clicketyclack:mouse_background"));
 
-        indicators.add(new MouseCustomEvent(icons.getHolder("clicketyclack:mouse_up"), decayTime) {
+        indicators.add(new MouseWheelEvent(icons.getHolder("clicketyclack:mouse_up"), decayTime, wheelThreshold, wheelDuration) {
             @Override
-            public void handleInput() {
-                if (Mouse.getEventDWheel() > WHEEL_THRESHOLD) {
-                    resetDecay();
-                    startDecay();
-                }
+            protected boolean shouldTrigger(int delta, int threshold) {
+                return delta > threshold;
             }
         });
 
-        indicators.add(new MouseCustomEvent(icons.getHolder("clicketyclack:mouse_down"), decayTime) {
+        indicators.add(new MouseWheelEvent(icons.getHolder("clicketyclack:mouse_down"), decayTime, wheelThreshold, wheelDuration) {
             @Override
-            public void handleInput() {
-                if (Mouse.getEventDWheel() < -WHEEL_THRESHOLD) {
-                    resetDecay();
-                    startDecay();
-                }
+            protected boolean shouldTrigger(int delta, int threshold) {
+                return delta < -threshold;
             }
         });
 
