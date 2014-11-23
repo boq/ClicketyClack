@@ -50,7 +50,7 @@ public class KeyboardIndicators {
         builder.put(Keyboard.KEY_ESCAPE, "ESC");
         builder.put(Keyboard.KEY_MINUS, "-");
         builder.put(Keyboard.KEY_EQUALS, "=");
-        builder.put(Keyboard.KEY_TAB, "\u21E5");
+        builder.put(Keyboard.KEY_TAB, "\u21B9");
         builder.put(Keyboard.KEY_LBRACKET, "[");
         builder.put(Keyboard.KEY_RBRACKET, "]");
         builder.put(Keyboard.KEY_RETURN, "\u23CE");
@@ -105,7 +105,7 @@ public class KeyboardIndicators {
         builder.put(Keyboard.KEY_HOME, "HOME");
         builder.put(Keyboard.KEY_END, "END");
         builder.put(Keyboard.KEY_INSERT, "INS");
-        builder.put(Keyboard.KEY_DELETE, "\u2326");
+        builder.put(Keyboard.KEY_DELETE, "DEL");
 
         CUSTOM_NAMES = builder.build();
     }
@@ -129,6 +129,10 @@ public class KeyboardIndicators {
         builder.put(Keyboard.KEY_F11, 2);
         builder.put(Keyboard.KEY_F12, 2);
         builder.put(Keyboard.KEY_INSERT, 2);
+        builder.put(Keyboard.KEY_DELETE, 2);
+        builder.put(Keyboard.KEY_LSHIFT, 2);
+        builder.put(Keyboard.KEY_RSHIFT, 2);
+        builder.put(Keyboard.KEY_TAB, 2);
         EXTRA_SIZE = builder.build();
     }
 
