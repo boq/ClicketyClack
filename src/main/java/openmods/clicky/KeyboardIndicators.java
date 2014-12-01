@@ -175,6 +175,10 @@ public class KeyboardIndicators {
             if (name == null)
                 name = Keyboard.getKeyName(key);
 
+            KeyIcon prev = activeIcons.remove(key);
+            if (prev != null)
+                prev.startDecay();
+
             KeyIcon icon = createIcon(name, key);
             icon.resetDecay();
             activeIcons.put(key, icon);
