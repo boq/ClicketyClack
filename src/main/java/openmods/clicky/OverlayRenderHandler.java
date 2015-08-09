@@ -37,7 +37,8 @@ public class OverlayRenderHandler {
         mouseIndicators = mouse.visible ? new MouseIndicators(icons, createPosition(mc, mouse), mouse.size, mouse.fadeTime, mouse.wheelEventDuration, mouse.wheelThreshold) : null;
 
         final KeyboardConfig keyboard = values.keyboard;
-        keyboardIndicators = keyboard.visible ? new KeyboardIndicators(icons, createPosition(mc, keyboard), keyboard.size, keyboard.fadeTime) : null;
+        final IKeyFilter filter = values.keyFilter;
+        keyboardIndicators = keyboard.visible ? new KeyboardIndicators(icons, createPosition(mc, keyboard), filter, keyboard.size, keyboard.fadeTime) : null;
     }
 
     public class FmlListener {

@@ -7,7 +7,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
+import net.minecraftforge.common.config.Configuration;
 import openmods.clicky.config.ConfigValues;
+import openmods.clicky.config.KeyFilterConfig;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -28,11 +30,14 @@ public class ConfigGuiFactory implements IModGuiFactory {
         private static List<IConfigElement> createConfigElements() {
             List<IConfigElement> result = Lists.newArrayList();
 
-            ConfigCategory mouseCategory = ClicketyClack.instance.config().getCategory(ConfigValues.CATEGORY_MOUSE);
+            final Configuration config = ClicketyClack.instance.config();
+            ConfigCategory mouseCategory = config.getCategory(ConfigValues.CATEGORY_MOUSE);
             result.add(new ConfigElement(mouseCategory));
 
-            ConfigCategory keyboardCategory = ClicketyClack.instance.config().getCategory(ConfigValues.CATEGORY_KEYBOARD);
+            ConfigCategory keyboardCategory = config.getCategory(ConfigValues.CATEGORY_KEYBOARD);
             result.add(new ConfigElement(keyboardCategory));
+
+            result.add(KeyFilterConfig.createConfigurationCategory(config));
 
             return result;
         }

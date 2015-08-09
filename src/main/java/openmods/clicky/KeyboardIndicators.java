@@ -17,6 +17,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 public class KeyboardIndicators {
+
+    private final IKeyFilter keyFilter;
     private final IndicatorPosition position;
     private final int scale;
     private final int fadeTime;
@@ -136,8 +138,9 @@ public class KeyboardIndicators {
         EXTRA_SIZE = builder.build();
     }
 
-    public KeyboardIndicators(IconContainer icons, IndicatorPosition position, int scale, int decayTime) {
+    public KeyboardIndicators(IconContainer icons, IndicatorPosition position, IKeyFilter keyFilter, int scale, int decayTime) {
         this.position = position;
+        this.keyFilter = keyFilter;
         this.scale = scale;
         this.fadeTime = decayTime;
 
@@ -169,7 +172,7 @@ public class KeyboardIndicators {
         final int key = Keyboard.getEventKey();
         final boolean isDown = Keyboard.getEventKeyState();
 
-        if (isDown) {
+        if (isDown && !keyFilter.isKeyFiltered(key)) {
             String name = CUSTOM_NAMES.get(key);
 
             if (name == null)
