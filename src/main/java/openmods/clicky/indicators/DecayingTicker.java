@@ -2,36 +2,31 @@ package openmods.clicky.indicators;
 
 public class DecayingTicker implements Ticker {
 
-    private final int decayTime;
-
-    private boolean isDecaying;
-
-    private int counter;
+    private final Timer decayTimer;
 
     public DecayingTicker(int decayTime) {
-        this.decayTime = decayTime;
+        this.decayTimer = new Timer(decayTime);
     }
 
     public void resetDecay() {
-        isDecaying = false;
-        counter = decayTime;
+        decayTimer.reset();
     }
 
     public void startDecay() {
-        isDecaying = true;
+        decayTimer.start();
     }
 
     @Override
     public void tick() {
-        if (isDecaying)
-            counter--;
+        decayTimer.tick();
     }
 
     public boolean hasDecayed() {
-        return isDecaying && counter <= 0;
+        return decayTimer.isFinished();
     }
 
-    public float getProgress(float partialTick) {
-        return Math.min(1, (counter + partialTick) / decayTime);
+    public float getDecayProgress(float partialTick) {
+        return decayTimer.getProgress(partialTick);
     }
+
 }

@@ -11,8 +11,8 @@ public class WideKeyIcon extends KeyIcon {
 
     private final IconHolder[] holders;
 
-    public WideKeyIcon(String contents, FontRenderer fontRenderer, int decayTime, IconHolder... holders) {
-        super(contents, fontRenderer, decayTime);
+    public WideKeyIcon(String contents, FontRenderer fontRenderer, int decayTime, int blinkTime, IconHolder... holders) {
+        super(contents, fontRenderer, decayTime, blinkTime);
         this.holders = holders;
     }
 
@@ -22,17 +22,17 @@ public class WideKeyIcon extends KeyIcon {
     }
 
     @Override
-    protected void renderIcon(float alpha) {
+    protected void renderIcon(float partialTick, float alpha, float blink) {
         GL11.glPushMatrix();
         for (IconHolder holder : holders) {
             IIcon icon = holder.get();
             if (icon != null)
-                RenderUtils.renderIcon(icon, alpha);
+                RenderUtils.renderIcon(icon, 1, 1, 1, alpha);
             GL11.glTranslatef(1, 0, 0);
         }
         GL11.glPopMatrix();
 
-        renderText(alpha);
+        renderText(blink, alpha);
         RenderUtils.bindDefaultItemsTexture();
 
     }

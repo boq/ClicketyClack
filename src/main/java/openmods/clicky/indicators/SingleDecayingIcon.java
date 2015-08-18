@@ -14,10 +14,10 @@ public class SingleDecayingIcon extends DecayingIcon {
     }
 
     @Override
-    protected void renderIcon(float alpha) {
+    protected void renderIcon(float partialTick, float alpha) {
         IIcon icon = this.icon.get();
         if (icon != null)
-            RenderUtils.renderIcon(icon, alpha);
+            RenderUtils.renderIcon(icon, 1, 1, 1, alpha);
     }
 
 }

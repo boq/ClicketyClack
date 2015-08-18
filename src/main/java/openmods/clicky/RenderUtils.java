@@ -27,8 +27,8 @@ public class RenderUtils {
         bindTextureToClient(TextureMap.locationItemsTexture);
     }
 
-    public static void renderIcon(final IIcon icon, float alpha) {
-        GL11.glColor4f(1, 1, 1, alpha);
+    public static void renderIcon(final IIcon icon, float red, float green, float blue, float alpha) {
+        GL11.glColor4f(red, green, blue, alpha);
         GL11.glBegin(GL11.GL_QUADS);
         GL11.glTexCoord2f(icon.getMinU(), icon.getMinV());
         GL11.glVertex2i(0, 0);

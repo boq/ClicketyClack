@@ -6,15 +6,15 @@ public abstract class DecayingIcon extends DecayingTicker implements Renderable 
         super(decayTime);
     }
 
-    protected abstract void renderIcon(float alpha);
+    protected abstract void renderIcon(float partialTick, float alpha);
 
     @Override
     public final void render(float partialTick) {
         if (hasDecayed())
             return;
 
-        float alpha = getProgress(partialTick);
-        renderIcon(alpha);
+        float alpha = getDecayProgress(partialTick);
+        renderIcon(partialTick, alpha);
     }
 
 }

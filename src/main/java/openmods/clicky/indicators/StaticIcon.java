@@ -18,7 +18,7 @@ public class StaticIcon implements Renderable {
         if (icon == null)
             return;
 
-        RenderUtils.renderIcon(icon, 1);
+        RenderUtils.renderIcon(icon, 1, 1, 1, 1);
     }
 
 }

@@ -22,6 +22,7 @@ public class KeyboardIndicators {
     private final IndicatorPosition position;
     private final int scale;
     private final int fadeTime;
+    private final int blinkTime;
 
     private final IconHolder keyLeft;
     private final IconHolder keyMiddle;
@@ -138,11 +139,12 @@ public class KeyboardIndicators {
         EXTRA_SIZE = builder.build();
     }
 
-    public KeyboardIndicators(IconContainer icons, IndicatorPosition position, IKeyFilter keyFilter, int scale, int decayTime) {
+    public KeyboardIndicators(IconContainer icons, IndicatorPosition position, IKeyFilter keyFilter, int scale, int decayTime, int blinkTime) {
         this.position = position;
         this.keyFilter = keyFilter;
         this.scale = scale;
         this.fadeTime = decayTime;
+        this.blinkTime = blinkTime;
 
         keyLeft = icons.getHolder("clicketyclack:key_left");
         keyMiddle = icons.getHolder("clicketyclack:key_middle");
@@ -154,18 +156,18 @@ public class KeyboardIndicators {
         Integer size = EXTRA_SIZE.get(key);
         if (size != null) {
             if (size == 2)
-                return new WideKeyIcon(name, RenderUtils.getFontRenderer(), fadeTime, keyLeft, keyRight);
+                return new WideKeyIcon(name, RenderUtils.getFontRenderer(), fadeTime, blinkTime, keyLeft, keyRight);
             else if (size > 2) {
                 IconHolder[] result = new IconHolder[size];
                 result[0] = keyLeft;
                 for (int i = 1; i < size - 1; i++)
                     result[i] = keyMiddle;
                 result[size - 1] = keyRight;
-                return new WideKeyIcon(name, RenderUtils.getFontRenderer(), fadeTime, result);
+                return new WideKeyIcon(name, RenderUtils.getFontRenderer(), fadeTime, blinkTime, result);
             }
         }
 
-        return new SingleKeyIcon(keySingle, name, RenderUtils.getFontRenderer(), fadeTime);
+        return new SingleKeyIcon(keySingle, name, RenderUtils.getFontRenderer(), fadeTime, blinkTime);
     }
 
     public void keyEvent() {
@@ -178,14 +180,15 @@ public class KeyboardIndicators {
             if (name == null)
                 name = Keyboard.getKeyName(key);
 
-            KeyIcon prev = activeIcons.remove(key);
-            if (prev != null)
-                prev.startDecay();
-
-            KeyIcon icon = createIcon(name, key);
-            icon.resetDecay();
-            activeIcons.put(key, icon);
-            icons.add(icon);
+            KeyIcon icon = activeIcons.get(key);
+            if (icon != null)
+                icon.blink();
+            else {
+                icon = createIcon(name, key);
+                icon.resetDecay();
+                activeIcons.put(key, icon);
+                icons.add(icon);
+            }
         } else {
             KeyIcon icon = activeIcons.remove(key);
             if (icon != null)
