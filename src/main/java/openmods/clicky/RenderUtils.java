@@ -2,8 +2,8 @@ package openmods.clicky;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -20,14 +20,14 @@ public class RenderUtils {
     }
 
     public static FontRenderer getFontRenderer() {
-        return Minecraft.getMinecraft().fontRenderer;
+        return Minecraft.getMinecraft().fontRendererObj;
     }
 
     public static void bindDefaultItemsTexture() {
-        bindTextureToClient(TextureMap.locationItemsTexture);
+        bindTextureToClient(TextureMap.locationBlocksTexture);
     }
 
-    public static void renderIcon(final IIcon icon, float red, float green, float blue, float alpha) {
+    public static void renderIcon(TextureAtlasSprite icon, float red, float green, float blue, float alpha) {
         GL11.glColor4f(red, green, blue, alpha);
         GL11.glBegin(GL11.GL_QUADS);
         GL11.glTexCoord2f(icon.getMinU(), icon.getMinV());

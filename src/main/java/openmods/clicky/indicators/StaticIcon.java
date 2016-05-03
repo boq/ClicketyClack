@@ -1,6 +1,6 @@
 package openmods.clicky.indicators;
 
-import net.minecraft.util.IIcon;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import openmods.clicky.IconContainer.IconHolder;
 import openmods.clicky.RenderUtils;
 
@@ -14,7 +14,7 @@ public class StaticIcon implements Renderable {
 
     @Override
     public void render(float partialTick) {
-        final IIcon icon = this.icon.get();
+        final TextureAtlasSprite icon = this.icon.get();
         if (icon == null)
             return;
 

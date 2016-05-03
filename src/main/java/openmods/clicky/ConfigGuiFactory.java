@@ -8,17 +8,15 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.IModGuiFactory;
+import net.minecraftforge.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.client.config.IConfigElement;
 import openmods.clicky.config.ConfigValues;
 import openmods.clicky.config.KeyFilterConfig;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 
-import cpw.mods.fml.client.IModGuiFactory;
-import cpw.mods.fml.client.config.GuiConfig;
-import cpw.mods.fml.client.config.IConfigElement;
-
-@SuppressWarnings({ "rawtypes" })
 public class ConfigGuiFactory implements IModGuiFactory {
 
     public static class ConfigScreen extends GuiConfig {

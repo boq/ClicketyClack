@@ -17,11 +17,13 @@
 build/
 run/
 bin/
+eclipse/
 
 # Eclipse
 .classpath
 .project
 .settings/
+*.launch
 
 # IntelliJ IDEA
 *.iml

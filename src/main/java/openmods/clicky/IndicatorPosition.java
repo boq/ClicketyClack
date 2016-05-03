@@ -30,7 +30,7 @@ public class IndicatorPosition {
     }
 
     public void update() {
-        ScaledResolution res = new ScaledResolution(minecraft, minecraft.displayWidth, minecraft.displayHeight);
+        ScaledResolution res = new ScaledResolution(minecraft);
         this.x = anchorX(res) + dx;
         this.y = anchorY(res) + dy;
     }

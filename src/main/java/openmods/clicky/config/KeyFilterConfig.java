@@ -9,20 +9,19 @@ import java.util.List;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import net.minecraftforge.fml.client.config.*;
+import net.minecraftforge.fml.client.config.DummyConfigElement.DummyCategoryElement;
 import openmods.clicky.IKeyFilter;
 
 import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Lists;
 
-import cpw.mods.fml.client.config.*;
-import cpw.mods.fml.client.config.DummyConfigElement.DummyCategoryElement;
-
 public class KeyFilterConfig implements IKeyFilter {
 
     public static final String KEY_KEYS = "keys";
 
-    private static class FlagArrayElement extends DummyConfigElement<Boolean> {
+    private static class FlagArrayElement extends DummyConfigElement {
 
         private final Property property;
         private final int keyCode;
@@ -36,10 +35,10 @@ public class KeyFilterConfig implements IKeyFilter {
         }
 
         @Override
-        public void set(Boolean value) {
+        public void set(Object value) {
             super.set(value);
 
-            if (value)
+            if (value == Boolean.TRUE)
                 config.add(keyCode);
             else
                 config.remove(keyCode);
@@ -54,8 +53,7 @@ public class KeyFilterConfig implements IKeyFilter {
         return config.get(ConfigValues.CATEGORY_KEY_FILTER, KEY_KEYS, new int[0], "List of key codes to be ignored (see http://minecraft.gamepedia.com/Key_codes for list)");
     }
 
-    @SuppressWarnings("rawtypes")
-    public static IConfigElement<?> createConfigurationCategory(Configuration config) {
+    public static IConfigElement createConfigurationCategory(Configuration config) {
         final Property property = getProperty(config);
 
         final TIntSet values = new TIntHashSet(property.getIntList());
@@ -69,7 +67,7 @@ public class KeyFilterConfig implements IKeyFilter {
         }
 
         final ConfigCategory category = config.getCategory(ConfigValues.CATEGORY_KEY_FILTER);
-        return new DummyCategoryElement<IConfigElement>(category.getName(), category.getLanguagekey(), filterList);
+        return new DummyCategoryElement(category.getName(), category.getLanguagekey(), filterList);
     }
 
     private final TIntHashSet filteredKeys;

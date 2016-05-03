@@ -24,25 +24,25 @@ public class MouseIndicators {
 
         ImmutableList.Builder<EventIcon> indicators = ImmutableList.builder();
 
-        background = new StaticIcon(icons.getHolder("clicketyclack:mouse_background"));
+        background = new StaticIcon(icons.getHolder(ClicketyClack.location("mouse_background")));
 
-        indicators.add(new MouseWheelEvent(icons.getHolder("clicketyclack:mouse_up"), decayTime, wheelThreshold, wheelDuration) {
+        indicators.add(new MouseWheelEvent(icons.getHolder(ClicketyClack.location("mouse_up")), decayTime, wheelThreshold, wheelDuration) {
             @Override
             protected boolean shouldTrigger(int delta, int threshold) {
                 return delta > threshold;
             }
         });
 
-        indicators.add(new MouseWheelEvent(icons.getHolder("clicketyclack:mouse_down"), decayTime, wheelThreshold, wheelDuration) {
+        indicators.add(new MouseWheelEvent(icons.getHolder(ClicketyClack.location("mouse_down")), decayTime, wheelThreshold, wheelDuration) {
             @Override
             protected boolean shouldTrigger(int delta, int threshold) {
                 return delta < -threshold;
             }
         });
 
-        indicators.add(new MouseButtonEvent(icons.getHolder("clicketyclack:mouse_left"), decayTime, 0));
-        indicators.add(new MouseButtonEvent(icons.getHolder("clicketyclack:mouse_right"), decayTime, 1));
-        indicators.add(new MouseButtonEvent(icons.getHolder("clicketyclack:mouse_middle"), decayTime, 2));
+        indicators.add(new MouseButtonEvent(icons.getHolder(ClicketyClack.location("mouse_left")), decayTime, 0));
+        indicators.add(new MouseButtonEvent(icons.getHolder(ClicketyClack.location("mouse_right")), decayTime, 1));
+        indicators.add(new MouseButtonEvent(icons.getHolder(ClicketyClack.location("mouse_middle")), decayTime, 2));
 
         this.indicators = indicators.build();
     }

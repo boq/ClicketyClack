@@ -2,16 +2,17 @@ package openmods.clicky;
 
 import java.io.File;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import openmods.clicky.config.ConfigValues;
 import openmods.clicky.config.KeyBindingHandler;
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.*;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 @Mod(modid = ClicketyClack.MOD_ID, name = ClicketyClack.MOD_NAME, version = "$VERSION$", guiFactory = "openmods.clicky.ConfigGuiFactory")
 public class ClicketyClack {
@@ -24,6 +25,10 @@ public class ClicketyClack {
 
     private Configuration config;
     private OverlayRenderHandler handler;
+
+    public static ResourceLocation location(String resource) {
+        return new ResourceLocation(MOD_ID, resource);
+    }
 
     public interface Proxy {
         public void preInit(File configFile);
@@ -55,11 +60,10 @@ public class ClicketyClack {
                 config.save();
 
             final OverlayRenderHandler handler = instance.handler = new OverlayRenderHandler(values);
-            MinecraftForge.EVENT_BUS.register(handler.getStitchListener());
-            FMLCommonHandler.instance().bus().register(handler.createFmlListener());
-            FMLCommonHandler.instance().bus().register(new ConfigListener());
+            MinecraftForge.EVENT_BUS.register(handler);
+            MinecraftForge.EVENT_BUS.register(new ConfigListener());
 
-            FMLCommonHandler.instance().bus().register(new KeyBindingHandler(handler));
+            MinecraftForge.EVENT_BUS.register(new KeyBindingHandler(handler));
         }
     }
 

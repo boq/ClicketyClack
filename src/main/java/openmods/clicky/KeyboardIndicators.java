@@ -146,10 +146,10 @@ public class KeyboardIndicators {
         this.fadeTime = decayTime;
         this.blinkTime = blinkTime;
 
-        keyLeft = icons.getHolder("clicketyclack:key_left");
-        keyMiddle = icons.getHolder("clicketyclack:key_middle");
-        keyRight = icons.getHolder("clicketyclack:key_right");
-        keySingle = icons.getHolder("clicketyclack:key_single");
+        keyLeft = icons.getHolder(ClicketyClack.location("key_left"));
+        keyMiddle = icons.getHolder(ClicketyClack.location("key_middle"));
+        keyRight = icons.getHolder(ClicketyClack.location("key_right"));
+        keySingle = icons.getHolder(ClicketyClack.location("key_single"));
     }
 
     private KeyIcon createIcon(String name, int key) {

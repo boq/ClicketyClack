@@ -2,37 +2,34 @@ package openmods.clicky;
 
 import java.util.Map;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraft.util.ResourceLocation;
 
 import com.google.common.collect.Maps;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class IconContainer {
 
     public static class IconHolder {
-        private final String iconName;
-        private IIcon icon;
+        private final ResourceLocation iconLocation;
+        private TextureAtlasSprite icon;
 
-        private IconHolder(String iconName) {
-            this.iconName = iconName;
+        private IconHolder(ResourceLocation iconLocation) {
+            this.iconLocation = iconLocation;
         }
 
-        private void register(IIconRegister registry) {
-            this.icon = registry.registerIcon(iconName);
+        private void register(TextureMap registry) {
+            this.icon = registry.registerSprite(iconLocation);
         }
 
-        public IIcon get() {
+        public TextureAtlasSprite get() {
             return icon;
         }
     }
 
-    private final Map<String, IconHolder> icons = Maps.newHashMap();
+    private final Map<ResourceLocation, IconHolder> icons = Maps.newHashMap();
 
-    public IconHolder getHolder(String iconName) {
+    public IconHolder getHolder(ResourceLocation iconName) {
         IconHolder holder = icons.get(iconName);
 
         if (holder == null) {
@@ -43,12 +40,8 @@ public class IconContainer {
         return holder;
     }
 
-    @SubscribeEvent
-    public void registerIcons(TextureStitchEvent.Pre evt) {
-        final TextureMap map = evt.map;
-        if (map.getTextureType() == 1) {
-            for (IconHolder layer : icons.values())
-                layer.register(map);
-        }
+    public void registerIcons(TextureMap textureMap) {
+        for (IconHolder layer : icons.values())
+            layer.register(textureMap);
     }
 }
