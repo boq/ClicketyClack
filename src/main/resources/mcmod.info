@@ -3,6 +3,7 @@
   "modid" : "clicketyclack",
   "name" : "ClicketyClack",
   "version" : "${version}",
+  "mcversion" : "${mc_version}",
   "credits" : "",
   "url" : "http://www.openmods.info",
   "authorList": [
