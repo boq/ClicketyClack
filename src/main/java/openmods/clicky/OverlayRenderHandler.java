@@ -74,7 +74,7 @@ public class OverlayRenderHandler {
 
     @SubscribeEvent
     public void registerIcons(TextureStitchEvent.Pre evt) {
-        icons.registerIcons(evt.map);
+        icons.registerIcons(evt.getMap());
     }
 
     @SubscribeEvent

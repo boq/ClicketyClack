@@ -14,7 +14,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import openmods.clicky.config.ConfigValues;
 import openmods.clicky.config.KeyBindingHandler;
 
-@Mod(modid = ClicketyClack.MOD_ID, name = ClicketyClack.MOD_NAME, version = "$VERSION$", guiFactory = "openmods.clicky.ConfigGuiFactory")
+@Mod(modid = ClicketyClack.MOD_ID,
+     name = ClicketyClack.MOD_NAME,
+     version = "$VERSION$",
+     guiFactory = "openmods.clicky.ConfigGuiFactory",
+     acceptedMinecraftVersions = "$ACCEPTED_MC_VERSIONS$",
+     acceptableRemoteVersions = "*")
 public class ClicketyClack {
 
     public static final String MOD_NAME = "ClicketyClack";

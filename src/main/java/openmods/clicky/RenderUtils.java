@@ -24,7 +24,7 @@ public class RenderUtils {
     }
 
     public static void bindDefaultItemsTexture() {
-        bindTextureToClient(TextureMap.locationBlocksTexture);
+        bindTextureToClient(TextureMap.LOCATION_BLOCKS_TEXTURE);
     }
 
     public static void renderIcon(TextureAtlasSprite icon, float red, float green, float blue, float alpha) {

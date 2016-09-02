@@ -10,7 +10,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
 
@@ -65,7 +65,7 @@ if (env.BUILD_NUMBER != null) {
 
 // Get Git metadata (if in Jenkins)
 ext.gitManifest = manifest {
-    if (env.GIT_BRANCH != null) {
+    if (branch != null) {
         attributes("Git-Branch": branch, "Git-Hash": hash)
     }
 }
@@ -73,11 +73,12 @@ ext.gitManifest = manifest {
 // Setup Forge plugin
 minecraft {
     version = mc_ver + "-" + forge_ver
-    runDir = 'eclipse'
-    
-    mappings = mcp_mappings 
-    
+    runDir = 'run'
+
+    mappings = mcp_mappings
+
     replaceIn "openmods/clicky/ClicketyClack.java"
+    replace '$ACCEPTED_MC_VERSIONS$', mc_version_range
     replace '$VERSION$', mod_version
 }
 
