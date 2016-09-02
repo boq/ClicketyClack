@@ -1,8 +1,9 @@
 package openmods.clicky;
 
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Set;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigCategory;
@@ -13,9 +14,6 @@ import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import openmods.clicky.config.ConfigValues;
 import openmods.clicky.config.KeyFilterConfig;
-
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
 
 public class ConfigGuiFactory implements IModGuiFactory {
 

@@ -4,7 +4,6 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import openmods.clicky.IconContainer.IconHolder;
 import openmods.clicky.RenderUtils;
-
 import org.lwjgl.opengl.GL11;
 
 public class WideKeyIcon extends KeyIcon {

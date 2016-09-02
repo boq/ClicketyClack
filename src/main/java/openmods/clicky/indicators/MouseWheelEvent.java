@@ -1,7 +1,6 @@
 package openmods.clicky.indicators;
 
 import openmods.clicky.IconContainer.IconHolder;
-
 import org.lwjgl.input.Mouse;
 
 public abstract class MouseWheelEvent extends SingleDecayingIcon implements EventIcon {

@@ -1,12 +1,10 @@
 package openmods.clicky;
 
+import com.google.common.collect.Maps;
 import java.util.Map;
-
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
-
-import com.google.common.collect.Maps;
 
 public class IconContainer {
 

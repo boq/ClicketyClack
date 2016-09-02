@@ -1,20 +1,17 @@
 package openmods.clicky;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import openmods.clicky.IconContainer.IconHolder;
 import openmods.clicky.indicators.KeyIcon;
 import openmods.clicky.indicators.SingleKeyIcon;
 import openmods.clicky.indicators.WideKeyIcon;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
-
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 public class KeyboardIndicators {
 

@@ -1,21 +1,19 @@
 package openmods.clicky.config;
 
+import com.google.common.collect.Lists;
 import gnu.trove.set.TIntSet;
 import gnu.trove.set.hash.TIntHashSet;
-
 import java.util.Arrays;
 import java.util.List;
-
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import net.minecraftforge.fml.client.config.*;
+import net.minecraftforge.fml.client.config.ConfigGuiType;
+import net.minecraftforge.fml.client.config.DummyConfigElement;
 import net.minecraftforge.fml.client.config.DummyConfigElement.DummyCategoryElement;
+import net.minecraftforge.fml.client.config.IConfigElement;
 import openmods.clicky.IKeyFilter;
-
 import org.lwjgl.input.Keyboard;
-
-import com.google.common.collect.Lists;
 
 public class KeyFilterConfig implements IKeyFilter {
 

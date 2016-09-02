@@ -1,12 +1,14 @@
 package openmods.clicky;
 
-import java.util.List;
-
-import openmods.clicky.indicators.*;
-
-import org.lwjgl.opengl.GL11;
-
 import com.google.common.collect.ImmutableList;
+import java.util.List;
+import openmods.clicky.indicators.EventIcon;
+import openmods.clicky.indicators.MouseButtonEvent;
+import openmods.clicky.indicators.MouseWheelEvent;
+import openmods.clicky.indicators.Renderable;
+import openmods.clicky.indicators.StaticIcon;
+import openmods.clicky.indicators.Ticker;
+import org.lwjgl.opengl.GL11;
 
 public class MouseIndicators {
     private final IndicatorPosition position;

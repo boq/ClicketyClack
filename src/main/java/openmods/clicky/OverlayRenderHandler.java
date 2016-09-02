@@ -4,12 +4,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.*;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
-import openmods.clicky.config.*;
-
+import openmods.clicky.config.ConfigValues;
+import openmods.clicky.config.IndicatorConfig;
+import openmods.clicky.config.KeyboardConfig;
+import openmods.clicky.config.MouseConfig;
 import org.lwjgl.opengl.GL11;
 
 public class OverlayRenderHandler {

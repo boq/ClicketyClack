@@ -5,7 +5,6 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import openmods.clicky.OverlayRenderHandler;
-
 import org.lwjgl.input.Keyboard;
 
 public class KeyBindingHandler {
