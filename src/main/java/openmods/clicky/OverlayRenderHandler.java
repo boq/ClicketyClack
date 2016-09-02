@@ -1,6 +1,7 @@
 package openmods.clicky;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -82,17 +83,16 @@ public class OverlayRenderHandler {
     @SubscribeEvent
     public void onRender(RenderTickEvent evt) {
         if (evt.phase == Phase.END) {
-            GL11.glColor3f(1, 1, 1);
-            GL11.glEnable(GL11.GL_TEXTURE_2D);
-            GL11.glDisable(GL11.GL_LIGHTING);
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            GlStateManager.color(1, 1, 1);
+            GlStateManager.enableTexture2D();
+            GlStateManager.disableLighting();
+            GlStateManager.enableBlend();
+            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             if (mouseIndicators != null)
                 mouseIndicators.render(evt.renderTickTime);
 
             if (keyboardIndicators != null)
                 keyboardIndicators.render(evt.renderTickTime);
-            GL11.glDisable(GL11.GL_BLEND);
         }
     }
 

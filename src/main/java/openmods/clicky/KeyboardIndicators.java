@@ -6,12 +6,12 @@ import com.google.common.collect.Maps;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import net.minecraft.client.renderer.GlStateManager;
 import openmods.clicky.IconContainer.IconHolder;
 import openmods.clicky.indicators.KeyIcon;
 import openmods.clicky.indicators.SingleKeyIcon;
 import openmods.clicky.indicators.WideKeyIcon;
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
 
 public class KeyboardIndicators {
 
@@ -238,16 +238,16 @@ public class KeyboardIndicators {
         RenderUtils.bindDefaultItemsTexture();
         position.update();
 
-        GL11.glPushMatrix();
-        GL11.glTranslated(position.x(), position.y(), 0);
-        GL11.glScaled(scale, scale, 1);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(position.x(), position.y(), 0);
+        GlStateManager.scale(scale, scale, 1);
 
         for (KeyIcon icon : icons) {
             icon.render(renderTick);
-            GL11.glTranslated(icon.getWidth(), 0, 0);
+            GlStateManager.translate(icon.getWidth(), 0, 0);
         }
 
-        GL11.glPopMatrix();
+        GlStateManager.popMatrix();
     }
 
 }

@@ -2,13 +2,13 @@ package openmods.clicky;
 
 import com.google.common.collect.ImmutableList;
 import java.util.List;
+import net.minecraft.client.renderer.GlStateManager;
 import openmods.clicky.indicators.EventIcon;
 import openmods.clicky.indicators.MouseButtonEvent;
 import openmods.clicky.indicators.MouseWheelEvent;
 import openmods.clicky.indicators.Renderable;
 import openmods.clicky.indicators.StaticIcon;
 import openmods.clicky.indicators.Ticker;
-import org.lwjgl.opengl.GL11;
 
 public class MouseIndicators {
     private final IndicatorPosition position;
@@ -70,15 +70,15 @@ public class MouseIndicators {
         RenderUtils.bindDefaultItemsTexture();
         position.update();
 
-        GL11.glPushMatrix();
-        GL11.glTranslated(position.x(), position.y(), 0);
-        GL11.glScaled(scale, scale, 1);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(position.x(), position.y(), 0);
+        GlStateManager.scale(scale, scale, 1);
 
         background.render(partialTick);
 
         for (Renderable layer : indicators)
             layer.render(partialTick);
 
-        GL11.glPopMatrix();
+        GlStateManager.popMatrix();
     }
 }
