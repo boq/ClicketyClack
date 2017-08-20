@@ -20,7 +20,7 @@ public class RenderUtils {
     }
 
     public static FontRenderer getFontRenderer() {
-        return Minecraft.getMinecraft().fontRendererObj;
+        return Minecraft.getMinecraft().fontRenderer;
     }
 
     public static void bindDefaultItemsTexture() {
